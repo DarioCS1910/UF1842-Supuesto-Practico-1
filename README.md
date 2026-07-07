@@ -1,1 +1,0 @@
-# UF1842-Supuesto-Practico-1
