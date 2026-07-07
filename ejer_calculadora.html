@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora UF1842</title>
+</head>
+<body>
+<script>
+    // Variables para almacenar los dos numeros
+    var num1 = null;
+    var num2 = null;
+    var opcion;
+
+    // Bucle principal que mantiene el menu activo hasta que se pulsa 6
+    for(;opcion !== 6;) {
+        opcion = parseInt(prompt(
+            "---- MENU ---- \n" +
+            "1.- Introducir numeros\n" +
+            "2.- Suma\n" +
+            "3.- Resta\n" +
+            "4.- Multiplicacion\n" +
+            "5.- Division\n" +
+            "6.- Salir\n\n" +
+            "Elige una opcion:"
+        ));
+
+        // Validar si la opcion es un numero valido del menu
+        if (isNaN(opcion) || opcion < 1 || opcion > 6) {
+            alert("Opcion no valida. Por favor, elige un numero del 1 al 6.");
+            continue;
+        }
+
+        // Si elige salir, rompemos el bucle directamente
+        if (opcion === 6) {
+            alert("Saliendo del programa...");
+            break;
+        }
+
+        // CONTROL DE ERRORES: Si elige una operacion (2 a 5) pero no ha introducido numeros aun
+        if (opcion >= 2 && opcion <= 5) {
+            if (num1 === null || num2 === null) {
+                alert("Error: Primero debes introducir los numeros (Opcion 1).");
+                continue; // Vuelve al inicio del menu
+            }
+        }
+
+        // Procesar la opcion seleccionada
+        switch (opcion) {
+            case 1:
+                num1 = parseFloat(prompt("Introduce el primer numero:"));
+                num2 = parseFloat(prompt("Introduce el segundo numero:"));
+
+                // Validar que los datos introducidos sean numeros
+                if (isNaN(num1) || isNaN(num2)) {
+                    alert("Error: Debes introducir numeros validos.");
+                    num1 = null;
+                    num2 = null;
+                } else {
+                    alert("Numeros guardados: " + num1 + " y " + num2);
+                }
+                break;
+
+            case 2:
+                alert("Resultado de la suma: " + (num1 + num2));
+                break;
+
+            case 3:
+                alert("Resultado de la resta: " + (num1 - num2));
+                break;
+
+            case 4:
+                alert("Resultado de la multiplicacion: " + (num1 * num2));
+                break;
+
+            case 5:
+                if (num2 !== 0) {
+                    alert("Resultado de la division: " + (num1 / num2));
+                } else {
+                    alert("Error: No se puede dividir entre 0.");
+                }
+                break;
+        }
+    }
+</script>
+</body>
+</html>
